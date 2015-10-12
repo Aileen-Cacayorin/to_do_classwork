@@ -1,3 +1,10 @@
 <h2><%=@task.description%></h2>
 
-<%= render 'form' %>
+
+<%= form_for [@list, @task] do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :complete %>
+  <%=f.check_box(:complete, :value => true) %>
+  <p><%= f.submit %></p>
+<% end %>
