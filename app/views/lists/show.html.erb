@@ -10,9 +10,10 @@
   <ul>
     <% @list.completed.each do |task| %>
       <li>
-        <%= task.description %>
+
         <%= task.description %> |
         <%= link_to "Edit Task", edit_list_task_path(@list, task) %> |
+        <%= link_to "mark as incomplete", list_task_path(@list, task, :mark => false), :method => :patch %> |
         <%= link_to "Delete Task", list_task_path(@list, task),
                           :data => {:confirm => "Are you sure?",
                                 :method => "delete"} %>
@@ -29,6 +30,7 @@
 
         <%= task.description %> |
         <%= link_to "Edit Task", edit_list_task_path(@list, task) %> |
+        <%= link_to "mark as complete", list_task_path(@list, task, :mark => true), :method => :patch %> |
         <%= link_to "Delete Task", list_task_path(@list, task),
                           :data => {:confirm => "Are you sure?",
                                 :method => "delete"} %>

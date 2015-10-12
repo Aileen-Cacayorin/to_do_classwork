@@ -22,10 +22,16 @@ class TasksController < ApplicationController
   end
 
   def update
+    # binding.pry
     @list = List.find(params[:list_id])
     @task = @list.tasks.find(params[:id])
-
-    if @task.update(task_params)
+    if params[:mark] == "true"
+      @task.update(:complete => true)
+      redirect_to list_path(@list)
+    elsif params[:mark] == "false"
+      @task.update(:complete => false)
+      redirect_to list_path(@list)
+    elsif @task.update(task_params)
       redirect_to list_path(@list)
     else
       render :edit
